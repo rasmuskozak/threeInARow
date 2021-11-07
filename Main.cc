@@ -1,6 +1,5 @@
 #include "Board.h"
 #include "Player.h"
-#include "ASCIIPrinter.h"
 
 #include <iostream>
 #include <string>
@@ -20,22 +19,38 @@ int main()
   
 
     std::cout << "\nWelcome to threeInARow!\nType 'q' to quit.\n" << std::endl;
-    board.printBoard();
 
     while(playGame)
     {
+        board.printBoard();
+
+        //Check win
+        if(board.isWin())
+        {
+            std::cout << "You win!" << std::endl;
+            playGame = false;
+            break;
+        }
+
+        //Get input
         if(p1.getMyTurn() == true)
         {
             playerTurn = "Player 1";
         }else{
             playerTurn = "Player 2";
         }
-        std::cout << playerTurn << "'s turn. Please make a move (col,row): ";
+        std::cout << playerTurn << "'s turn. Please make a move (row col): ";
         std::cin >> col >> row;
 
-        threeInARow::ASCIIPrinter::makeMove(board, col, row);
-        board.printBoard();
-
+        std::cout << "Making move " << row <<", "<< col << ": " << std::endl;
+        if(p1.getMyTurn() == true)
+        {
+            board.makeMove(col, row, p1.getPlayerSymbol());
+        }else{
+            board.makeMove(col, row, p2.getPlayerSymbol());
+        }
+        
+        
         //Switch player
         if(p1.getMyTurn() == true)
         {

@@ -17,11 +17,15 @@ namespace threeInARow
 
             void createBoard();
             void printBoard();
+            void makeMove(int col, int row, char symbol);
+
+            bool isWin();
+            bool checkCol();
+            bool checkRow();
+            bool checkDiag();
 
         private:
             std::vector<std::vector<char>> gameBoard;
-
-
     };
 }
 

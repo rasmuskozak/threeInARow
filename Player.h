@@ -13,6 +13,7 @@ namespace threeInARow{
     {
         public:
             void setPlayerNumber(int const& input);
+            char getPlayerSymbol() const { return symbol;}
 
             void setMyTurn(bool const& input);
             bool getMyTurn(){ return myTurn; }
