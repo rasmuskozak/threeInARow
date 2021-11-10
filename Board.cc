@@ -62,9 +62,7 @@ namespace threeInARow
                 }
             }
 
-            std::cout << "cnt: " << cnt << std::endl;
-
-            if(cnt == 3)
+            if(cnt == 2)
             {
                 return true;
             }else
@@ -72,6 +70,8 @@ namespace threeInARow
                 cnt = 0;
             }
         }
+
+        return false;
     }
 
     bool Board::checkCol()
@@ -93,9 +93,7 @@ namespace threeInARow
                 }
             }
 
-            std::cout << "cnt2: " << cnt << std::endl;
-
-            if(cnt == 3)
+            if(cnt == 2)
             {
                 return true;
             }else
@@ -103,6 +101,8 @@ namespace threeInARow
                 cnt = 0;
             }
         }
+
+        return false;
         
     }
 
@@ -117,12 +117,10 @@ namespace threeInARow
 
         if(gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2])
         {
-            std::cout << "cnt3a: " << cnt << std::endl;
             return true;
             
         }else if(gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0])
         {
-            std::cout << "cnt3b: " << cnt << std::endl;
             return true;
 
         }else{
@@ -133,26 +131,12 @@ namespace threeInARow
 
     bool Board::isWin()
     {
-        if(checkCol() == true)
-        {
-            std::cout << " col = true" << std::endl;
-        }
-        if(checkRow() == true)
-        {
-            std::cout << " row = true" << std::endl;
-        }
-        if(checkDiag() == true)
-        {
-            std::cout << " diag = true" << std::endl;
-        }
         if(checkCol() == true || checkRow() == true || checkDiag() == true)
         {
             return true;
         }else{
             return false;
         }
-
-        
     }
 
 }

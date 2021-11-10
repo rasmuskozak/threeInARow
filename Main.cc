@@ -7,8 +7,10 @@
 int main()
 {
     bool playGame{true};
-    int col, row;
+    int col{0};
+    int row{0};
     std::string playerTurn;
+    std::string input{""};
 
     threeInARow::Board board;
     threeInARow::Player p1;
@@ -17,7 +19,6 @@ int main()
     p2.setPlayerNumber(2);
     board.createBoard();
   
-
     std::cout << "\nWelcome to threeInARow!\nType 'q' to quit.\n" << std::endl;
 
     while(playGame)
@@ -39,8 +40,18 @@ int main()
         }else{
             playerTurn = "Player 2";
         }
+
         std::cout << playerTurn << "'s turn. Please make a move (row col): ";
-        std::cin >> col >> row;
+        std::getline(std::cin, input);
+        if(input[0] == 'Q' || input[0] == 'q')
+        {
+            std::cout << "Thank you for playing, welcome back\n" << std::endl;
+            break;
+        }else
+        {
+            col = (int)input[0]-48;
+            row = (int)input[2]-48;
+        }
 
         std::cout << "Making move " << row <<", "<< col << ": " << std::endl;
         if(p1.getMyTurn() == true)
@@ -50,8 +61,7 @@ int main()
             board.makeMove(col, row, p2.getPlayerSymbol());
         }
         
-        
-        //Switch player
+        //Switch player -- Maybe integrate this in board class?
         if(p1.getMyTurn() == true)
         {
             p1.setMyTurn(false);
