@@ -2,7 +2,8 @@
 
 namespace threeInARow
 {
-    void Player::setPlayerNumber(int const& player)
+    
+oid Player::setPlayerNumber(int const& player)
     {
         if(player%2 == 0)
         {

@@ -9,6 +9,8 @@
 
 namespace threeInARow{
 
+    int const MAXIMUM_SYMBOLS{3};
+
     class Player
     {
         public:
@@ -25,7 +27,6 @@ namespace threeInARow{
             int symbolsPlaced{0};
             bool myTurn;
             std::string name;
-            
 
     };
 }

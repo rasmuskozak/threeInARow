@@ -9,6 +9,8 @@
 
 namespace threeInARow
 {
+    int const MAXIMUM_SYMBOLS{3};
+
     class Board
     {
         public:
@@ -17,7 +19,12 @@ namespace threeInARow
 
             void createBoard();
             void printBoard();
-            void makeMove(int col, int row, char symbol);
+
+            bool makeMove(int const& col, int const& row, char const& symbol);
+            bool isAllowedMove(int const& col, int const& row) const;
+            bool countSymbols(char const& symbol);
+            bool makeMove2(int const& removeCol, int const& removeRow, int const& col, int const& row,
+                char const& symbol);
 
             bool isWin();
             bool checkCol();

@@ -41,24 +41,38 @@ int main()
             playerTurn = "Player 2";
         }
 
-        std::cout << playerTurn << "'s turn. Please make a move (row col): ";
-        std::getline(std::cin, input);
-        if(input[0] == 'Q' || input[0] == 'q')
-        {
-            std::cout << "Thank you for playing, welcome back\n" << std::endl;
-            break;
-        }else
-        {
-            col = (int)input[0]-48;
-            row = (int)input[2]-48;
-        }
+        do{
+            std::cout << playerTurn << "'s turn. Please make a move (row col): ";
+            std::getline(std::cin, input);
+            if(input[0] == 'Q' || input[0] == 'q')
+            {
+                std::cout << "Thank you for playing, welcome back\n" << std::endl;
+                playGame = false;
+                break;
+            }else
+            {
+                col = (int)input[0]-48;
+                row = (int)input[2]-48;
+            }
+        }while(!board.isAllowedMove(col, row));
 
-        std::cout << "Making move " << row <<", "<< col << ": " << std::endl;
-        if(p1.getMyTurn() == true)
-        {
-            board.makeMove(col, row, p1.getPlayerSymbol());
-        }else{
-            board.makeMove(col, row, p2.getPlayerSymbol());
+        if(playGame)
+        {       
+            std::cout << "Making move " << row <<", "<< col << ": " << std::endl;
+            if(p1.getMyTurn() == true && board.countSymbols(p1.getPlayerSymbol()))
+            {
+                board.makeMove(col, row, p1.getPlayerSymbol());
+
+            }else if(p2.getMyTurn() == true && board.countSymbols(p2.getPlayerSymbol())){
+                board.makeMove(col, row, p2.getPlayerSymbol());
+
+            }else if(p1.getMyTurn())
+            {
+
+            }else
+            {
+
+            }
         }
         
         //Switch player -- Maybe integrate this in board class?

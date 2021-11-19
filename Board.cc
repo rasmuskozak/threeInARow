@@ -14,9 +14,61 @@ namespace threeInARow
         }
     }
 
-    void Board::makeMove(int col, int row, char symbol)
+    bool Board::isAllowedMove(int const& col, int const& row) const
     {
-        gameBoard[col][row] = symbol;
+        if(gameBoard[col][row] == ' ')
+        {
+            return true;
+        }else
+        {
+            std::cout << "Not allowed move." << std::endl;
+            return false;
+        }
+    }
+
+    bool Board::countSymbols(char const& symbol)
+    {
+        int cnt{0};
+        for(int i{0}; i < 3; ++i)
+        {
+            for(int j{0}; j < 3; ++j)
+            {
+                if(gameBoard[i][j] == symbol)
+                {
+                    cnt++;
+                }
+
+            }
+        }
+
+        if(cnt == 3)
+        {
+            return false;
+        }else{
+            return true;
+        }
+
+
+    }
+
+    bool Board::makeMove2(int const& removeCol, int const& removeRow, int const& col,
+        int const& row, char const& symbol)  
+    {
+        gameBoard[removeCol][removeRow] = ' ';
+        Board::makeMove(col, row, symbol);
+    }
+
+    bool Board::makeMove(int const& col, int const& row, char const& symbol)
+    {
+        if(isAllowedMove(col, row))
+        {
+            gameBoard[col][row] = symbol;
+            return true;
+        }else
+        {
+            return false;
+        }
+   
     }
 
     void Board::printBoard()
